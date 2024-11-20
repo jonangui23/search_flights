@@ -2,6 +2,5 @@ from django.http import HttpResponse
 from django.template import loader
 
 def members(request):
-  templates = ['userInput.html', 'results.html', 'forms.py']
-  template = loader.get_template(templates)
+  template = loader.get_template('parentTemplate.html')
   return HttpResponse(template.render())
