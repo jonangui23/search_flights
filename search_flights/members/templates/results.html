@@ -1,0 +1,17 @@
+<h1>Flight Results</h1>
+{% if flights %}
+  <ul>
+    {% for flight in flights %}
+      <li>
+        <strong>Airline:</strong> {{ flight.airline }}<br>
+        <strong>Price:</strong> ${{ flight.price }}<br>
+        <strong>Departure:</strong> {{ flight.departure }}<br>
+        <strong>Arrival:</strong> {{ flight.arrival }}<br>
+        <a href="{{ flight.link }}" target="_blank">Book Now</a>
+      </li>
+      <hr>
+    {% endfor %}
+  </ul>
+{% else %}
+  <p>No flights found.</p>
+{% endif %}
