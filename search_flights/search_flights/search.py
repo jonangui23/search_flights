@@ -45,6 +45,7 @@ def get_flights(origin, destination, start_date, end_date):
 
     return flights
 
+
 def sort_flights_by_price(flights):
     """
     Sort flights by price in ascending order.
