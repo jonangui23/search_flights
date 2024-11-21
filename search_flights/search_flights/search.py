@@ -9,7 +9,7 @@ def get_flights(origin, destination, start_date, end_date):
     """
     # Construct the URL based on the target website's parameters (example URL structure)
     url = (
-        f"https://www.example-flight-aggregator.com/search?"
+        f"https://www.google.com/travel/flights?gl=US&hl=en-US?"
         f"origin={origin}&destination={destination}&depart={start_date}&return={end_date}"
     )
     headers = {
