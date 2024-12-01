@@ -1,17 +1,127 @@
-<h1>Flight Results</h1>
-{% if flights %}
-  <ul>
-    {% for flight in flights %}
-      <li>
-        <strong>Airline:</strong> {{ flight.airline }}<br>
-        <strong>Price:</strong> ${{ flight.price }}<br>
-        <strong>Departure:</strong> {{ flight.departure }}<br>
-        <strong>Arrival:</strong> {{ flight.arrival }}<br>
-        <a href="{{ flight.link }}" target="_blank">Book Now</a>
-      </li>
-      <hr>
-    {% endfor %}
-  </ul>
-{% else %}
-  <p>No flights found.</p>
-{% endif %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flight Results</title>
+    <style>
+        /* General Page Styling */
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+
+        h1, h2 {
+            text-align: center;
+            color: #2c3e50;
+        }
+
+        a {
+            text-decoration: none;
+            color: #3498db;
+            font-weight: bold;
+            margin: 20px;
+        }
+
+        a:hover {
+            color: #2980b9;
+        }
+
+        /* Styling the results container */
+        .results {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 10px;
+        }
+
+        th {
+            background-color: #3498db;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        tr:hover {
+            background-color: #d6eaf8;
+        }
+
+        /* Styling "No flights found" message */
+        p {
+            text-align: center;
+            color: #e74c3c;
+            font-size: 18px;
+            margin-top: 20px;
+        }
+
+        /* Back to search link styling */
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Flight Search Results</h1>
+    <a class="back-link" href="{% url 'home' %}">Back to Search</a>
+
+    <!-- Displaying results only after the search button is clicked -->
+    {% if results %}
+        <div class="results">
+            <h2>Search Results:</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Origin</th>
+                        <th>Destination</th>
+                        <th>Flight Date</th>
+                        <th>Arrival Date</th>
+                        <th>Time</th>
+                        <th>Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for result in results %}
+                        <tr>
+                            <td>{{ result.startingAirport }}</td>
+                            <td>{{ result.destinationAirport }}</td>
+                            <td>{{ result.flightDate }}</td>
+                            <td>{{ result.date }}</td>
+                            <td>{{ result.time }}</td>
+                            <td>{{ result.totalFare }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% else %}
+        <p>No flights found matching your criteria.</p>
+    {% endif %}
+</body>
+</html>
+
